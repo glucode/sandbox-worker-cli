@@ -18,6 +18,9 @@ buildscript {
 apply plugin: com.github.jengelman.gradle.plugins.shadow.ShadowPlugin
 
 shadowJar {
+    project.configurations.implementation.canBeResolved = true
+    project.configurations.api.canBeResolved = true
+    configurations = [project.configurations.implementation, project.configurations.api]
     mergeServiceFiles()
     transform(GraalTransformer.class)
 }
